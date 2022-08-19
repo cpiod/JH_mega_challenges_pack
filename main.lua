@@ -24,7 +24,7 @@ register_blueprint "challenge_nudity"
         name   = "Angel of Nudity",
         desc   = "You love your body and you will happily expose it to zombies, bots and demons. As such, you cannot wear any armor or helmet.\n\nRating   : {GEASY}",
         rating = "EASY",
-        abbr   = "AoN",
+        abbr   = "AoNu",
         letter = "N",
     },
     challenge = {
@@ -59,7 +59,7 @@ register_blueprint "challenge_darkness"
         name   = "Angel of Darkness",
         desc   = "The world is a dark place.\n\nRating   : {GEASY}",
         rating = "EASY",
-        abbr   = "AoD",
+        abbr   = "AoDa",
         letter = "D",
     },
     challenge = {
@@ -69,6 +69,49 @@ register_blueprint "challenge_darkness"
         on_create_player = [[
             function( self, player )
                 player:attach( "runtime_darkness" )
+            end
+        ]],
+    },
+}
+
+register_blueprint "chall_event_volatile_storage"
+{
+    callbacks = {
+        on_create = [[
+            function ( self )
+            end
+        ]],
+        on_enter_level = [[
+            function ( self, level, entity, reenter )
+                if reenter then return end
+                generator.generate_litter( level, level:get_area(), {
+                    litter    = { "barrel_fuel", "barrel_toxin", "barrel_acid", "barrel_cryo", "barrel_napalm" },
+                    chance    = 66,
+                    max_count = 80,
+                })
+            end
+        ]],
+    }
+}
+
+register_blueprint "challenge_volatility"
+{
+    text = {
+        name   = "Angel of Volatility",
+        desc   = "Ready for an explosive experience?\n\nRating   : {GEASY}",
+        rating = "EASY",
+        abbr   = "AoVo",
+        letter = "V",
+    },
+    challenge = {
+        type      = "challenge",
+    },
+    callbacks = {
+        on_create = [[
+            function( self, player )
+                for i,linfo in ipairs( world.data.level ) do
+                    linfo.event = "chall_event_volatile_storage"
+                end
             end
         ]],
     },
