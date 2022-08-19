@@ -4,10 +4,13 @@ You want more Jupiter Hell challenges? Get this mod!
 
 It contains :
 
-- Angel of Nudity : no armor/helmet
-- Angel of Darkness : light range is 4 everywhere
-- Angel of Volatility. Every single floor is volatile storage
-- Angel of Bullet Rain : whenever you shoot, all the bullets of the weapon are used at once
+- Angel of Nudity: no armor/helmet
+- Angel of Darkness: light range is 4 everywhere
+- Angel of Volatility: every floor has a volatile storage
+- Angel of Infestation: all the moons are infested
+- Angel of the Hunt: you’ll be hunted
+- Angel of Bullet Rain: whenever you shoot, all the bullets of the weapon are used at once
+- Angel of Monomania: you love your weapon. You won’t change it for anything else!
 - and many more to come!
 
 # How to install
