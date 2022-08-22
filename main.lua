@@ -1,43 +1,43 @@
-register_blueprint "runtime_nudity"
-{
-    flags = { EF_NOPICKUP }, 
-    text = {
-        denied = "You won’t hide that perfect body!",
-    },
-    callbacks = {
-        can_pickup = [[
-            function( self, player, item )
-                if item.armor or item.helmet then
-                    ui:set_hint( self.text.denied, 1001, 0 )
-                    world:play_voice( "vo_refuse" )
-                    return -1
-                end
-                return 0
-            end
-        ]],
-    },
-}
+-- register_blueprint "runtime_nudity"
+-- {
+--     flags = { EF_NOPICKUP }, 
+--     text = {
+--         denied = "You won’t hide that perfect body!",
+--     },
+--     callbacks = {
+--         can_pickup = [[
+--             function( self, player, item )
+--                 if item.armor or item.helmet then
+--                     ui:set_hint( self.text.denied, 1001, 0 )
+--                     world:play_voice( "vo_refuse" )
+--                     return -1
+--                 end
+--                 return 0
+--             end
+--         ]],
+--     },
+-- }
 
-register_blueprint "challenge_nudity"
-{
-    text = {
-        name   = "Angel of Nudity",
-        desc   = "You love your body and you will happily expose it to zombies, bots and demons. As such, you won’t wear any armor or helmet.\n\nRating   : {GEASY}",
-        rating = "EASY",
-        abbr   = "AoNu",
-        letter = "N",
-    },
-    challenge = {
-        type      = "challenge",
-    },
-    callbacks = {
-        on_create_player = [[
-            function( self, player )
-                player:attach( "runtime_nudity" )
-            end
-        ]],
-    },
-}
+-- register_blueprint "challenge_nudity"
+-- {
+--     text = {
+--         name   = "Angel of Nudity",
+--         desc   = "You love your body and you will happily expose it to zombies, bots and demons. As such, you won’t wear any armor or helmet.\n\nRating   : {GEASY}",
+--         rating = "EASY",
+--         abbr   = "AoNu",
+--         letter = "N",
+--     },
+--     challenge = {
+--         type      = "challenge",
+--     },
+--     callbacks = {
+--         on_create_player = [[
+--             function( self, player )
+--                 player:attach( "runtime_nudity" )
+--             end
+--         ]],
+--     },
+-- }
 
 register_blueprint "runtime_darkness"
 {
@@ -520,6 +520,63 @@ register_blueprint "challenge_monomania"
                 if eammo then world:destroy( eammo ) end
                 player:attach( "runtime_monomania" )
                 player.equipment.count = 1
+            end
+        ]],
+    },
+}
+
+register_blueprint "runtime_real_time"
+{
+    flags = { EF_NOPICKUP },
+    text = {
+        denied = "You ran out of time!",
+    },
+    attributes = {
+        aort_prev_time = 0
+    },
+	callbacks = {
+        on_pre_command = [[
+            function ( self, actor, cmt )
+                local t = ui:get_time_ms()
+                nova.log("t:"..t.." "..self.attributes.aort_prev_time)
+                -- check in combat
+                for _ in world:get_level():targets( actor, 10 ) do 
+                    if t - self.attributes.aort_prev_time < 1000 or cmt == COMMAND_WAIT then -- pass
+                        nova.log("Pass")
+                        self.attributes.aort_prev_time = t
+                        return 0
+                    else
+                        world:command( COMMAND_WAIT, actor )
+                        ui:set_hint( self.text.denied, 1001, 0 )
+                        world:play_voice( "vo_refuse" )
+                        return -1
+                    end
+                    break
+                end
+                -- out of combat
+                self.attributes.aort_prev_time = t
+                return 0
+            end
+        ]]
+    }
+}
+
+register_blueprint "challenge_real_time"
+{
+    text = {
+        name   = "Angel of Real Time",
+        desc   = "You like to play fast. In combat, you must register your input in less than 1 second or your character waits.\n\nRating   : {GEASY}",
+        rating = "EASY",
+        abbr   = "AoRT",
+        letter = "R",
+    },
+    challenge = {
+        type      = "challenge",
+    },
+    callbacks = {
+        on_create_player = [[
+            function( self, player )
+                player:attach( "runtime_real_time" )
             end
         ]],
     },
