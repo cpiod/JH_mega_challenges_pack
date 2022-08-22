@@ -22,7 +22,7 @@ register_blueprint "challenge_nudity"
 {
     text = {
         name   = "Angel of Nudity",
-        desc   = "You love your body and you will happily expose it to zombies, bots and demons. As such, you cannot wear any armor or helmet.\n\nRating   : {GEASY}",
+        desc   = "You love your body and you will happily expose it to zombies, bots and demons. As such, you won’t wear any armor or helmet.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoNu",
         letter = "N",
@@ -102,6 +102,23 @@ register_blueprint "chall_event_volatile_storage"
     }
 }
 
+
+register_blueprint "runtime_volatility"
+{
+    flags = { EF_NOPICKUP }, 
+    callbacks = {
+        on_enter_level = [=[
+            function ( self, entity )
+                for e in world:get_level():entities() do 
+                    if e.data and e.data.ai then
+                        e:attach( "exalted_kw_unstable" )
+                    end
+                end
+            end
+        ]=],
+    },
+}
+
 register_blueprint "challenge_volatility"
 {
     text = {
@@ -115,6 +132,11 @@ register_blueprint "challenge_volatility"
         type      = "challenge",
     },
     callbacks = {
+        on_create_player = [[
+            function( self, player )
+                player:attach( "runtime_volatility" )
+            end
+        ]],
         on_create = [[
             function( self, player )
                 for i,linfo in ipairs( world.data.level ) do
@@ -481,7 +503,7 @@ register_blueprint "challenge_monomania"
 {
     text = {
         name   = "Angel of Monomania",
-        desc   = "You are a sentimental. You went through so many hardships with her… so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
+        desc   = "You are sentimental. You went through so many hardships with her… so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
         rating = "MEDIUM",
         abbr   = "AoMo",
         letter = "M",

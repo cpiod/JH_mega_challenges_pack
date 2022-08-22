@@ -46,7 +46,7 @@ Go to the Jupiter Hell root directory (or "JupiterHell.app > Contents > MacOS" f
 
     mkdir -p mods
     cd mods
-    git clone https://github.com/cpiod/JH_mega_challenges_pack.git
+    git clone https://github.com/cpiod/JH_mega_challenges_pack.git mega_challenges_pack
 
 To update this mod, go to the Jupiter Hell root directory and type:
 
