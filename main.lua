@@ -1,4 +1,4 @@
-nova.require "mods/JH_mega_challenges_pack/trial_completionist"
+nova.require "mods/JH_mega_challenges_pack/trial_tourism"
 
 -- register_blueprint "runtime_nudity"
 -- {
