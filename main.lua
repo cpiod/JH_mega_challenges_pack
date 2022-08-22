@@ -57,7 +57,7 @@ register_blueprint "challenge_darkness"
 {
     text = {
         name   = "Angel of Darkness",
-        desc   = "The world is a dark place.\n\nRating   : {GEASY}",
+        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nThe world is a dark place.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoDa",
         letter = "D",
@@ -123,7 +123,7 @@ register_blueprint "challenge_volatility"
 {
     text = {
         name   = "Angel of Volatility",
-        desc   = "Ready for an explosive experience?\n\nRating   : {GEASY}",
+        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nReady for an explosive experience?\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoVo",
         letter = "V",
@@ -220,7 +220,7 @@ register_blueprint "challenge_infestation"
 {
     text = {
         name   = "Angel of Infestation",
-        desc   = "A relaxing experience, with no zombies, no CRI, no bots.\n\nRating   : {GEASY}",
+        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nA relaxing experience, with no zombies, no CRI, no bots.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoIn",
         letter = "I",
@@ -306,7 +306,7 @@ register_blueprint "challenge_hunt"
 {
     text = {
         name   = "Angel of the Hunt",
-        desc   = "They know you are coming. They are waiting for you.\n\nRating   : {GEASY}",
+        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nThey know you are coming. They are waiting for you.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoHu",
         letter = "H",
@@ -363,7 +363,7 @@ register_blueprint "challenge_bullet_rain"
 {
     text = {
         name   = "Angel of Bullet Rain",
-        desc   = "You just like a nice bullet rain, you know? Because there can’t be 'too much lead'. Each time you shoot, you empty your magazine! Of course, melee and revolver are forbidden. They are no fun!\n\nRating   : {GEASY}",
+        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nYou just like a nice bullet rain, you know? Because there can’t be 'too much lead'. Each time you shoot, you empty your magazine! Of course, melee and revolver are forbidden. They are no fun!\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoBR",
         letter = "B",
@@ -503,7 +503,7 @@ register_blueprint "challenge_monomania"
 {
     text = {
         name   = "Angel of Monomania",
-        desc   = "You are sentimental. You went through so many hardships with her… so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
+        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nYou are sentimental. You went through so many hardships with her… so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
         rating = "MEDIUM",
         abbr   = "AoMo",
         letter = "M",
@@ -565,7 +565,7 @@ register_blueprint "challenge_real_time"
 {
     text = {
         name   = "Angel of Real Time",
-        desc   = "You like to play fast. In combat, you must register your input in less than 1 second or your character waits.\n\nRating   : {GEASY}",
+        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nYou like to play fast. In combat, you must register your input in less than 1 second or your character waits.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoRT",
         letter = "R",
