@@ -1,3 +1,5 @@
+nova.require "mods/JH_mega_challenges_pack/trial_completionist"
+
 -- register_blueprint "runtime_nudity"
 -- {
 --     flags = { EF_NOPICKUP }, 
@@ -581,4 +583,3 @@ register_blueprint "challenge_real_time"
         ]],
     },
 }
-
