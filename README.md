@@ -7,9 +7,9 @@ It contains :
 - Angel of Darkness: light range is 4 everywhere
 - Angel of Volatility: every floor has a volatile storage, enemies are unstable
 - Angel of Infestation: all the moons are infested
-- Angel of the Hunt: you’ll be hunted
 - Angel of Bullet Rain: whenever you shoot, all the bullets of the weapon are used at once
 - Angel of Monomania: you love your weapon. You won’t change it for anything else!
+- Angel of Carpentry: what if you were not a soldier but a humble carpenter?
 - Angel of Real Time: in combat, you have only 1s to decide what to do
 - Trial of Tourism: visit the moons of Jupiter peacefully
 - and many more to come!
