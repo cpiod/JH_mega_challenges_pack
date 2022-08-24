@@ -59,7 +59,7 @@ register_blueprint "challenge_darkness"
 {
     text = {
         name   = "Angel of Darkness",
-        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nThe world is a dark place.\n\nRating   : {GEASY}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nThe world is a dark place.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoDa",
         letter = "D",
@@ -125,7 +125,7 @@ register_blueprint "challenge_volatility"
 {
     text = {
         name   = "Angel of Volatility",
-        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nReady for an explosive experience?\n\nRating   : {GEASY}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nReady for an explosive experience?\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoVo",
         letter = "V",
@@ -222,7 +222,7 @@ register_blueprint "challenge_infestation"
 {
     text = {
         name   = "Angel of Infestation",
-        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nA relaxing experience, with no zombies, no CRI, no bots.\n\nRating   : {GEASY}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nA relaxing experience, with no zombies, no CRI, no bots.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoIn",
         letter = "I",
@@ -308,7 +308,7 @@ register_blueprint "challenge_hunt"
 {
     text = {
         name   = "Angel of the Hunt",
-        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nThey know you are coming. They are waiting for you.\n\nRating   : {GEASY}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nThey know you are coming. They are waiting for you.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoHu",
         letter = "H",
@@ -365,7 +365,7 @@ register_blueprint "challenge_bullet_rain"
 {
     text = {
         name   = "Angel of Bullet Rain",
-        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nYou just like a nice bullet rain, you know? Because there can’t be 'too much lead'. Each time you shoot, you empty your magazine! Of course, melee and revolver are forbidden. They are no fun!\n\nRating   : {GEASY}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou just like a nice bullet rain, you know? Because there can’t be 'too much lead'. Each time you shoot, you empty your magazine! Of course, melee and revolver are forbidden. They are no fun!\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoBR",
         letter = "B",
@@ -505,7 +505,7 @@ register_blueprint "challenge_monomania"
 {
     text = {
         name   = "Angel of Monomania",
-        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nYou are sentimental. You went through so many hardships with her… so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou are sentimental. You went through so many hardships with her… so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
         rating = "MEDIUM",
         abbr   = "AoMo",
         letter = "M",
@@ -540,11 +540,10 @@ register_blueprint "runtime_real_time"
         on_pre_command = [[
             function ( self, actor, cmt )
                 local t = ui:get_time_ms()
-                nova.log("t:"..t.." "..self.attributes.aort_prev_time)
+                -- nova.log("t:"..t.." "..self.attributes.aort_prev_time)
                 -- check in combat
                 for _ in world:get_level():targets( actor, 10 ) do 
                     if t - self.attributes.aort_prev_time < 1000 or cmt == COMMAND_WAIT then -- pass
-                        nova.log("Pass")
                         self.attributes.aort_prev_time = t
                         return 0
                     else
@@ -563,11 +562,57 @@ register_blueprint "runtime_real_time"
     }
 }
 
+register_blueprint "trait_use_medkit"
+{
+    blueprint = "trait",
+    text = {
+        name   = "Use medkit",
+        desc   = "",
+        full   = "",
+        abbr   = "",
+        denied = "No small medkit!",
+    },
+    callbacks = {
+        on_activate = [=[
+            function(self,entity)
+                return -1
+            end
+        ]=],
+        on_use = [=[
+            function ( self, player, level, target )
+                -- for e in world:get_level():entities() do
+                --     nova.log(e)
+                --     if world:get_id(e) == "medkit_small" then
+                --         world:command( COMMAND_USE, player, e)
+                --         level:drop_item( player, e )
+                --         world:destroy( e )
+                --         return 1
+                --     end
+                -- end
+
+                local e = player:child("medkit_small")
+                if e then
+                    world:command( COMMAND_USE, player, e)
+                    level:drop_item( player, e )
+                    world:destroy( e )
+                    return 1
+                end
+                ui:set_hint( self.text.denied, 1001, 0 )
+                world:play_voice( "vo_refuse" )
+                return 0
+            end
+        ]=],
+    },
+    skill = {
+        cooldown = 0,
+    },
+}
+
 register_blueprint "challenge_real_time"
 {
     text = {
         name   = "Angel of Real Time",
-        desc   = "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nYou like to play fast. In combat, you must register your input in less than 1 second or your character waits.\n\nRating   : {GEASY}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou like to play fast. In combat, you must register your input in less than 1 second or your character waits.\n\nRating   : {GEASY}",
         rating = "EASY",
         abbr   = "AoRT",
         letter = "R",
@@ -579,6 +624,7 @@ register_blueprint "challenge_real_time"
         on_create_player = [[
             function( self, player )
                 player:attach( "runtime_real_time" )
+                -- player:attach( "trait_use_medkit" )
             end
         ]],
     },

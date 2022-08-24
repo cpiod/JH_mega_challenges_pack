@@ -60,7 +60,7 @@ register_blueprint "trial_tourism"
 {
     text = {
         name 		= "Tourism",
-        desc   		= "{!CPIOD’S MEGA CHALLENGE PACK MOD}\nYou aren't here to battle the hordes of hell, you are just here for a tour of the moons of Jupiter. You can't use weapons, but enemies won't attack you either.\n\nReccommend setting camera-eye-distance to 10 so you can view the model details up close.\n\nRating   : {GTOURIST}\n",
+        desc   		= "{!MEGA CHALLENGE PACK MOD}\nYou aren't here to battle the hordes of hell, you are just here for a tour of the moons of Jupiter. You can't use weapons, but enemies won't attack you either.\n\nRecommend setting camera-eye-distance to 10 so you can view the model details up close.\n\nRating   : {GTOURIST}\n",
         rating 		= "TOURIST",
         abbr   		= "Tour",
         mortem_line = "He was just seeing the sights!"
@@ -1016,10 +1016,6 @@ register_world "trial_tourism"
 			}
 			world:lua_callback( player, "on_win_game" )
 			world:play_voice( "vo_beyond_ending" )
-			ui:set_achievement( "acv_difficulty_01" )
-			if DIFFICULTY > 0 then ui:set_achievement( "acv_difficulty_02" ) end
-			if DIFFICULTY > 1 then ui:set_achievement( "acv_difficulty_03" ) end
-			if DIFFICULTY > 2 then ui:set_achievement( "acv_difficulty_04" ) end
 		elseif result == 0 then
 			ui:post_mortem( result, true )
 			ui:dead_alert()
