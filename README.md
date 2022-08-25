@@ -7,6 +7,9 @@ It contains :
 - Angel of Darkness: light range is 4 everywhere
 - Angel of Volatility: every floor has a volatile storage, enemies are unstable
 - Angel of Infestation: all the moons are infested
+- Angel of the Hunt: you’ll be hunted
+- Angel of Hell: an eventful adventure
+- Angel of Desolation: the moons have scars of previous battles
 - Angel of Bullet Rain: whenever you shoot, all the bullets of the weapon are used at once
 - Angel of Monomania: you love your weapon. You won’t change it for anything else!
 - Angel of Carpentry: what if you were not a soldier but a humble carpenter?
