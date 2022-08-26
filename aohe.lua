@@ -4,14 +4,19 @@ original_generator_run = generator.run
 function generator.run( self, linfo, gen_run_func, gen_spawn_func )
 
 	local linfo = linfo or world.data.level[ world.data.current ]
-    local events = linfo.event
+    local events = nil
+    if linfo then
+        events = linfo.event
+        linfo.event = nil
+    end
     -- we will take care of that
-    linfo.event = nil
 
     -- run the original generator
     original_generator_run ( self, linfo, gen_run_func, gen_spawn_func )
 
-    linfo.event = events
+    if linfo then
+        linfo.event = events
+    end
     -- cpiod’s hack, should be backward compatible
 	local event = nil
 	if linfo.event then

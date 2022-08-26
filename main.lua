@@ -1,4 +1,5 @@
 nova.require "mods/JH_mega_challenges_pack/trial_tourism"
+-- nova.require "mods/JH_mega_challenges_pack/trial_purgatory"
 -- nova.require "mods/JH_mega_challenges_pack/aonu.lua"
 nova.require "mods/JH_mega_challenges_pack/aort.lua"
 nova.require "mods/JH_mega_challenges_pack/aobr.lua"
