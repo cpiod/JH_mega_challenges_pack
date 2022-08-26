@@ -15,17 +15,44 @@ nova.require "data/lua/jh/data/levels/beyond_crucible"
 nova.require "data/lua/jh/data/levels/beyond_percipice"
 nova.require "data/lua/jh/data/levels/cot/cot"
 
+register_blueprint "runtime_boss_rexio"
+{
+    flags = { EF_NOPICKUP },
+    callbacks = {
+        on_die = [[
+			function( self )
+                ui:spawn_fx( nil, "fx_boss_die_1", nil, world:get_position( self ) )
+                world:play_sound( "gib", self, 2.0 )
+				world:play_sound( "boss_die_final", self )
+				world:next_level( 1000 )
+			end
+        ]]
+    },
+}
+
+
+
 register_blueprint "trial_purgatory"
 {
 	text = {
         name        = "Purgatory",
         desc        = "(TODO)",
+        rating 		= "TODO",
 		abbr        = "Purg",
 		mortem_line = "He witnessed the {!Purgatory}!"
     },
 	challenge = {
 		type  = "trial",
+        rank = 1,
+		group = "trial_purgatory",
+		score = false,
 	},
+	callbacks = {
+        on_mortem = [[
+                function( self, player, win )
+                end
+        ]],
+    }
 }
 
 register_blueprint "level_cot_cpiod"
@@ -62,6 +89,15 @@ register_blueprint "level_cot_cpiod"
         on_enter_level = [[
             function ( self, player, reenter )
                 ui:set_hint( " ", 666, 0, true )
+                local cinfo = world.data.level[ world.data.current ]
+                local newcinfocot = ""
+                local convert = { n="U", e="R", w="L", s="D" }
+                for i=1,#cinfo.cot do
+                    local c = string.char(string.byte( cinfo.cot, i ))
+                    nova.log("cpiod "..c)
+                    newcinfocot = newcinfocot..convert[c]
+                end
+                self.text.name = "Purgatory "..tostring(newcinfocot)
                 local curse   = player:child("cot_curse") or player:attach( "cot_curse" )
                 local tick    = math.max( 2, ( DIFFICULTY * 2 ) - 1 )
                 local current = curse.attributes.health_lost
@@ -109,9 +145,6 @@ function cpiod_cot_generate( self, params, code )
         carn   = "uni_smg_carnage",
         viper  = "uni_smg_viper",
         voidsm = "uni_smg_void",
-        eur    = 8,
-        ioio   = 15,
-        dante  = 22,
     }
     local codes = {}
     for k,v in pairs( names ) do
@@ -157,9 +190,9 @@ function cpiod_cot_generate( self, params, code )
         cinfo.cot = ""
         root = true
     end
-    local uh     = world:get_user_hash()
-    local mnum   = 8101 * 8111 * 16
-    local clen   = 16
+    -- local uh     = world:get_user_hash()
+    -- local mnum   = 8101 * 8111 * 16
+    -- local clen   = 16
     --[=[
     for i = 1,2000 do
         local mnum   = 8101 * 8111 * i
@@ -187,44 +220,44 @@ function cpiod_cot_generate( self, params, code )
         end
     end
     --]=]
-    local mcode  = cot.number_to_code( mnum, clen, code )
+    -- local mcode  = cot.number_to_code( mnum, clen, code )
     local ph     = world:get_player_hash()
     local code   = cot.number_to_code( ph, 5, code )
     local used   = false
-    if (not cot.short) and cinfo.cot == code then
-        self.attributes.spawn_bulk = 0.0
-            -- 0..clen-2
-        --local mindex = math.random( clen - 1 ) - 1
-        local mindex = uh % 15
-        local code_tile = {
-            map = [[
-.......
-Y.Y.Y.Y
-.......
-            ]]
-        }
-        local tile  = map_tile.new( code_tile.map, translation.pure, self )
-        tile:place( self, ivec2( 17-3, 17-1 ), generator.placer, self )
-        local count = 3
-        for t in self:coords( "marker4" ) do
-            local index = mindex + count
-            self:set_cell( t, "floor" )
-            if index < 1 or index > #mcode then
-                self:place_entity( "cot_plate_empty", t, ivec2(0,1) )
-            else
-                local char = string.sub( mcode, index, index )
-                self:place_entity( "cot_plate_"..char, t, ivec2(0,1) )
-            end
-            count = count - 1
-        end
-    end
-    if (cot.short and cinfo.cot == code) or cinfo.cot == mcode then
-        self.attributes.spawn_bulk = 0.0
-        world:get_player():attach( "cot_final_buff")
-        local e = self:place_entity( "cot_portal", ivec2( 17,17 ) )
-        e.data.target_index = world.data.cot.boss_index
-        used = true
-    end
+    --if (not cot.short) and cinfo.cot == code then
+    --    self.attributes.spawn_bulk = 0.0
+    --        -- 0..clen-2
+    --    --local mindex = math.random( clen - 1 ) - 1
+    --    local mindex = uh % 15
+    --    local code_tile = {
+    --        map = [[
+--.......
+--Y.Y.Y.Y
+--.......
+    --        ]]
+    --    }
+    --    local tile  = map_tile.new( code_tile.map, translation.pure, self )
+    --    tile:place( self, ivec2( 17-3, 17-1 ), generator.placer, self )
+    --    local count = 3
+    --    for t in self:coords( "marker4" ) do
+    --        local index = mindex + count
+    --        self:set_cell( t, "floor" )
+    --        if index < 1 or index > #mcode then
+    --            self:place_entity( "cot_plate_empty", t, ivec2(0,1) )
+    --        else
+    --            local char = string.sub( mcode, index, index )
+    --            self:place_entity( "cot_plate_"..char, t, ivec2(0,1) )
+    --        end
+    --        count = count - 1
+    --    end
+    --end
+    -- if (cot.short and cinfo.cot == code) or cinfo.cot == mcode then
+    --     self.attributes.spawn_bulk = 0.0
+    --     world:get_player():attach( "cot_final_buff")
+    --     local e = self:place_entity( "cot_portal", ivec2( 17,17 ) )
+    --     e.data.target_index = world.data.cot.boss_index
+    --     used = true
+    -- end
     local add_exit = function( c, dir )
         self:set_cell( c, "floor_exit_"..dir )
         self:place_entity( "cot_plate_"..dir, c, ivec2(0,1) )
@@ -245,7 +278,7 @@ Y.Y.Y.Y
             local eid = world.add_special{
                 episode        = 1,
                 depth          = depth + 1,
-                blueprint      = "level_cot",
+                blueprint      = "level_cot_cpiod",
                 item_level     = dlevel,
                 danger_level   = dlevel,
                 branch_index   = 1,
@@ -254,12 +287,26 @@ Y.Y.Y.Y
                 cot            = cinfo.cot..dir,
                 rewards        = rewards,
             }
-            
+
             cinfo.exit[dir] = eid
             local einfo = world.data.level[ eid ]
             einfo.exit = {}
             einfo.exit[ cot.reverse( dir ) ] = world.data.current
         end
+    end
+    -- if depth >= 1 then
+    if depth >= 10 then
+        local e = self:add_entity( "rexio", ivec2( 17,17 ) )
+        -- local e = self:add_entity( "rexio", ivec2( 20,17 ) )
+        e:attach( "runtime_boss_rexio" )
+        e.flags.data[ EF_ACTION ]     = false
+        e.flags.data[ EF_BUMPACTION ] = false
+        e.text.name  = "The One Who Was Not Petted"
+        for i=1,10 do
+            world:lua_callback(e, "level_up")
+        end
+        e.health.current = e.attributes.health
+        -- e.health.current = 1
     end
     for c in self:coords( "mark_elevator" ) do
         if c.x > 25 then add_exit(c,"w") end
@@ -338,8 +385,24 @@ register_world "trial_purgatory"
         player.statistics.data.special_levels.generated  = 0
         player.statistics.data.special_levels.accessible = 0
     end,
-    on_end   = function( player, result )
-    end,
+	on_end   = function( player, result )
+		if result > 0 then
+			ui:alert{
+				delay = 1000,
+				position = ivec2( -1, 18 ),
+				size = ivec2( 30, 6 ),
+				content = "     {R"..ui:text("ui.lua.common.connection_lost").."}\n "..ui:text("ui.lua.common.continue"),
+				footer = " ",
+				win = true,
+			}
+			world:play_voice( "vo_beyond_ending" )
+		elseif result == 0 then
+			ui:post_mortem( result, true )
+			ui:dead_alert()
+		elseif result < 0 then
+			ui:post_mortem( result, true )
+		end
+	end,
     on_stats = function( player, win )
     end,
     on_entity = function( entity )
