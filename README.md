@@ -14,7 +14,8 @@ It contains :
 - Angel of Monomania: you love your weapon. You won’t change it for anything else!
 - Angel of Carpentry: what if you were not a soldier but a humble carpenter?
 - Angel of Real Time: in combat, you have only 1s to decide what to do
-- Trial of Tourism: visit the moons of Jupiter peacefully
+- Angel of no Retreat (by Deemzul): you cannot move away from enemies that you see unless moving towards another enemy
+- Trial of Tourism (by Sihoiba): visit the moons of Jupiter peacefully
 - Trial of Purgatory: enter the Purgatory, loot its uniques, and meet its boss…
 - and many more to come!
 
