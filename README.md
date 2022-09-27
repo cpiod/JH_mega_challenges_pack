@@ -15,6 +15,7 @@ It contains :
 - Angel of Carpentry: what if you were not a soldier but a humble carpenter?
 - Angel of Real Time: in combat, you have only 1s to decide what to do
 - Trial of Tourism: visit the moons of Jupiter peacefully
+- Trial of Purgatory: enter the Purgatory, loot its uniques, and meet its boss…
 - and many more to come!
 
 # How to install
@@ -32,28 +33,30 @@ Otherwise, look where you installed the game!
 ### Manual install (Windows and Linux)
 
 1. Create a "mods" folder in the Jupiter Hell root directory if it does not exist.
-2. Create a "mega_challenges_pack" folder inside the "mods" folder.
-3. Inside the "mega_challenges_pack" folder, put the content of this archive: https://github.com/cpiod/JH_mega_challenges_pack/archive/refs/heads/main.zip
+2. Create a "JH_mega_challenges_pack" folder inside the "mods" folder.
+3. Inside the "JH_mega_challenges_pack" folder, put the content of this archive: https://github.com/cpiod/JH_mega_challenges_pack/archive/refs/heads/main.zip
 
-In the end, the folder structure should be: "(jupiter hell root directory) > mods > mega_challenges_pack > main.lua".
+In the end, the folder structure should be: "(jupiter hell root directory) > mods > JH_mega_challenges_pack > main.lua".
 
 ### Manual install (macOS)
 
 1. Navigate to your Jupiter Hell app, right click, select "show package contents", navigate to Contents > MacOS.
 2. Create a "mods" folder there if it does not exist.
-2. Create a "mega_challenges_pack" folder inside the "mods" folder.
-3. Inside the "mega_challenges_pack" folder, put the content of this archive: https://github.com/cpiod/JH_mega_challenges_pack/archive/refs/heads/main.zip
+2. Create a "JH_mega_challenges_pack" folder inside the "mods" folder.
+3. Inside the "JH_mega_challenges_pack" folder, put the content of this archive: https://github.com/cpiod/JH_mega_challenges_pack/archive/refs/heads/main.zip
 
 ### Install with git
+
+You’ll need to install [git](https://git-scm.com/) if you don’t have it.
 
 Go to the Jupiter Hell root directory (or "JupiterHell.app > Contents > MacOS" for macOS) and type:
 
     mkdir -p mods
     cd mods
-    git clone https://github.com/cpiod/JH_mega_challenges_pack.git mega_challenges_pack
+    git clone https://github.com/cpiod/JH_mega_challenges_pack.git
 
 To update this mod, go to the Jupiter Hell root directory and type:
 
-    cd mods/mega_challenges_pack
+    cd mods/JH_mega_challenges_pack
     git pull
 

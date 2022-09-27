@@ -30,13 +30,11 @@ register_blueprint "runtime_boss_rexio"
     },
 }
 
-
-
 register_blueprint "trial_purgatory"
 {
 	text = {
         name        = "Purgatory",
-        desc        = "(TODO)",
+        desc        = "{!MEGA CHALLENGE PACK MOD}\nEnter the Purgatory and loot its uniques. But what’s that distant howling?…\n\nBEWARE: winning this trial will crash the game. No data will be lost.",
         rating 		= "TODO",
 		abbr        = "Purg",
 		mortem_line = "He witnessed the {!Purgatory}!",
