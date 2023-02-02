@@ -73,21 +73,7 @@ register_blueprint "trial_purgatory"
 
 register_blueprint "level_cot_cpiod"
 {
-	blueprint   = "level_base",
-    text = {
-		name  = "Purgatory",
-    },
-    level_info = {
-        returnable = true,
-        store      = true,
-    },
-	level_vo = {
-		silly   = 0.0,
-		serious = 1.0,
-    },
-    attributes = {
-        spawn_bulk = 0.0,
-    },
+	blueprint   = "level_cot",
 	callbacks = {
 		on_create = [[
 			function ( self )
