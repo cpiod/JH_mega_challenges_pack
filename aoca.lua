@@ -13,6 +13,17 @@ register_blueprint "runtime_carpentry"
                 return 0
             end
         ]],
+        on_enter_level = [=[ -- remove all medical stations
+            function ( self, entity, reenter )
+                local level = world:get_level()
+                for e in level:entities() do 
+                    local id = world:get_id( e )
+                    if id == "medical_station" then
+                        world:destroy( e )
+                    end
+                end
+            end
+        ]=],
         on_pickup = [=[
             function ( self, user, item )
                 local id = world:get_hid( item )
