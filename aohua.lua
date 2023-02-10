@@ -9,7 +9,7 @@ register_blueprint "runtime_hubris_again"
             function ( self, entity, reenter )
                 if not reenter and world.data.current == 15 then
                     local weapons = {
-                        "exo_katana","exo_cpistol","esmg","exo_railgun","uni_rifle_hammerhead","uni_vulcan", "uni_shotgun_monster","uni_launcher_calamity"
+                        "exo_katana","uni_revolver_love","esmg","exo_railgun","uni_rifle_hammerhead","uni_vulcan", "uni_shotgun_monster","uni_launcher_calamity"
                     }
                     local param = {
                         title = self.text.choose,
@@ -18,6 +18,8 @@ register_blueprint "runtime_hubris_again"
                     for i,id in ipairs( weapons ) do
                         param[i] = { name = world:get_text( id, "name" ), target = self, id = id, }
                     end
+                    -- rewrite the Love one
+                    param[2].name = "Love and Hate"
                     ui:terminal( entity, self, param )
                 end
             end
@@ -31,12 +33,16 @@ register_blueprint "runtime_hubris_again"
                     uni_rifle_hammerhead    = { "ammo_762", 100 },
                     exo_railgun = { "ammo_cells", 100 },
                     uni_launcher_calamity = { "ammo_cells", 100 },
-                    exo_cpistol = { "ammo_9mm", 100 },
+                    uni_revolver_love = { "ammo_44", 50 },
                     exo_smg = { "ammo_cells", 100 },
                     exo_katana       = { "stimpack_small", 1, 1 },
                 }
                 who:pickup( "armor_blue" )
                 who:pickup( id )
+                if id == "uni_revolver_love" then
+                    who:equip( "uni_pistol_hate" )
+                    who:equip( "ammo_762", { stack = { amount = 50 } } )
+                end
                 local count = info[id][3] or 1
                 for _=1,count do
                     who:equip( info[id][1], { stack = { amount = info[id][2] } } )
