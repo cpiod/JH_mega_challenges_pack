@@ -1,9 +1,6 @@
 register_blueprint "runtime_real_time"
 {
     flags = { EF_NOPICKUP },
-    text = {
-        denied = "{!Too late!}",
-    },
     attributes = {
         aort_prev_time = 0
     },
@@ -13,13 +10,17 @@ register_blueprint "runtime_real_time"
                 local t = ui:get_time_ms()
                 -- check in combat
                 for _ in world:get_level():targets( actor, 10 ) do -- at least one visible enemy
-                    if t - self.attributes.aort_prev_time < 1000 or cmt == COMMAND_WAIT then -- pass
+                    local max_time = 1000
+                    if actor:child("buff_stimpack") then
+                        max_time = 3000
+                    end
+                    if t - self.attributes.aort_prev_time < max_time or cmt == COMMAND_WAIT then -- pass
                         self.attributes.aort_prev_time = t
                         return 0
                     else
                         world:command( COMMAND_WAIT, actor )
                         world:play_sound("wait", self)
-                        ui:set_hint( self.text.denied, 1001, 0 )
+                        ui:set_hint( "{!Too late!}", 1001, 0 )
                         return -1
                     end
                     break
@@ -32,58 +33,85 @@ register_blueprint "runtime_real_time"
     }
 }
 
-register_blueprint "trait_use_medkit"
+register_blueprint "trait_use_stimpack"
 {
     blueprint = "trait",
     text = {
-        name   = "Use medkit",
-        desc   = "",
-        full   = "",
-        abbr   = "",
-        denied = "No small medkit!",
+        name   = "Use stimpack",
+        desc   = "Internal",
+        full   = "Internal",
+        abbr   = "MED",
     },
+    flags = { EF_CONSUMABLE },
     callbacks = {
         on_activate = [=[
             function(self,entity)
                 return -1
             end
         ]=],
-        on_use = [=[
-            function ( self, player, level, target )
-                if world:has_item(player, "medkit_small") > 0 then
 
-                    local hc      = player.health
-                    local max     = player.attributes.health
+        on_post_command = [=[
+            function ( self, actor, cmt, weapon, time )
+                self.skill.charge = world:has_item(actor, "stimpack_small")
+            end
+        ]=],
+
+        on_use = [=[
+            function ( self, entity, level, target )
+                if world:has_item(entity, "stimpack_small") > 0 then
+
+                    local hc      = entity.health
+                    local max     = entity.attributes.health
+                    local mod     = world:get_attribute_mul( entity, "medkit_mod" ) or 1.0
                     local current = hc.current
 
-                    if current < max then
-                        local mod = world:get_attribute_mul( player, "medkit_mod" ) or 1.0
-                        world:play_sound( "medkit_small", player )
+                    world:play_sound( "medkit_small", entity )
+                    if hc.current < max then
                         hc.current = current + math.floor( 40 * mod )
                         if hc.current > max then
                             hc.current = max
                         end
-                        ui:spawn_fx( player, "fx_heal", player )
-                        if current <= 30 then
-                            world:play_voice("vo_imedkit")
-                        else
-                            world:play_voice("vo_medkit")
-                        end
-                        world:destroy( player:child("bleed") )
-                        world:destroy( player:child("poisoned") )
-                        world:destroy( player:child("acided") )
-                        world:destroy( player:child("burning") )
-                        world:destroy( player:child("freeze") )
-                        gtk.remove_fire( player:get_position() )
-                        -- remove medkit once used
-                        world:remove_items(player, "medkit_small", 1)
-                        return 100
-                    else
-                        ui:set_hint( "No need to heal", 1001, 0 )
-                        return -1
                     end
+
+                    local epain = entity:child("pain")
+                    if epain then
+                        epain.attributes.accuracy = 0
+                        epain.attributes.value    = 0
+                    end
+
+                    for c in ecs:children( entity ) do
+                        if c.resource then
+                            local attr   = c.attributes
+                            local value  = attr.value
+                            local max    = attr.max
+                            if value < max then
+                                local amount = math.floor( max / 4 )
+                                attr.value = math.min( value + amount, max )
+                            end
+                        end
+                        if c.skill then
+                            if c.skill.time_left > 0 then
+                                c.skill.time_left = 0
+                            end
+                        end
+                    end
+                    world:add_buff( entity, "buff_stimpack", 500 )
+                    ui:spawn_fx( entity, "fx_heal", entity )
+                    if current <= 30 then
+                        world:play_voice("vo_imedkit")
+                    else
+                        world:play_voice("vo_medkit")
+                    end
+                    world:destroy( entity:child("bleed") )
+                    world:destroy( entity:child("poisoned") )
+                    world:destroy( entity:child("acided") )
+                    world:destroy( entity:child("burning") )
+                    world:destroy( entity:child("freeze") )
+                    gtk.remove_fire( entity:get_position() )
+
+                    return 100
                 else
-                    ui:set_hint( "{RNo small medkit!}", 1001, 0 )
+                    ui:set_hint( "{RNo small stimpack!}", 1001, 0 )
                     return -1
                 end
             end
@@ -91,7 +119,8 @@ register_blueprint "trait_use_medkit"
     },
     skill = {
         cooldown = 0,
-        cost = 0
+        cost = 0,
+        charge = 0
     },
 }
 
@@ -99,7 +128,7 @@ register_blueprint "challenge_real_time"
 {
     text = {
         name   = "Angel of Real Time",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou like to play fast. In combat, you must register your input in less than 1 second or your character waits.\n\nRating   : {RHARD}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou like to play fast. In combat, you must register your input in less than 1 second or your character waits. You got 3 seconds with a stimmed character, and you start with a stimpack!\n\nRating   : {RHARD}",
         rating = "HARD",
         abbr   = "AoRT",
         letter = "RT",
@@ -111,7 +140,9 @@ register_blueprint "challenge_real_time"
         on_create_player = [[
             function( self, player )
                 player:attach( "runtime_real_time" )
-                player:attach( "trait_use_medkit" )
+                local tr = player:attach( "trait_use_stimpack" )
+                player:attach( "stimpack_small" )
+                tr.skill.charge = world:has_item(player, "stimpack_small")
             end
         ]],
     },
