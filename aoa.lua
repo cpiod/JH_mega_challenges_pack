@@ -14,7 +14,7 @@ register_blueprint "challenge_ancient"
 {
     text = {
         name   = "Angel from Ancient Time",
-        desc   = "Long ago, another force fought demons: the ancients. Play as one of them, but don’t lose any time exploring the moons of Jupiter: defeat the Harbinger, now!\n\nRating   : {RHARD}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nLong ago, another force fought demons: the ancients. Play as one of them, but don’t lose any time exploring the moons of Jupiter: defeat the Harbinger, now!\n\nRating   : {RHARD}",
         rating = "HARD",
         abbr   = "AoA",
         letter = "A",

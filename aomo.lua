@@ -114,7 +114,7 @@ register_blueprint "challenge_monomania"
 {
     text = {
         name   = "Angel of Monomania",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou are sentimental. You went through so many hardships with her… so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou are sentimental. You went through so many hardships with her... so you’ll keep up until the end! You cannot change weapon.\nTo make things easier, ammo picked up gets converted to a small amount of the ammo type of your beloved weapon.\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
         rating = "MEDIUM",
         abbr   = "AoMo",
         letter = "M",

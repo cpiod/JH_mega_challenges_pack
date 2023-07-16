@@ -46,11 +46,11 @@ register_blueprint "runtime_volatility"
 register_blueprint "challenge_volatility"
 {
     text = {
-        name   = "Angel of Volatility",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nReady for an explosive experience?\n\nRating   : {GEASY}",
+        name   = "Angel of Kaboom",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nReady for an explosive experience? Each level is a volatile storage and each enemy is unstable!\n\nRating   : {GEASY}",
         rating = "EASY",
-        abbr   = "AoVo",
-        letter = "V",
+        abbr   = "AoK",
+        letter = "K",
     },
     challenge = {
         type      = "challenge",

@@ -57,7 +57,7 @@ register_blueprint "challenge_hubris_again"
 {
     text = {
         name   = "Angel of Hubris, Again",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nOverconfidence? Nah, pure hubris! You don't need all that junk and experience, you can tackle Io from the get go! To help out you get a bunch of small medkits, a blue armor, a phase device, and a choice of exotic weapon.\n\nRating   : {YMEDIUM}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nRework of the Angel of Hubris challenge.\n\nOverconfidence? Nah, pure hubris! You don't need all that junk and experience, you can tackle Io from the get go! To help out you get a bunch of small medkits, a blue armor, a phase device, and a choice of exotic weapon.\n\nRating   : {YMEDIUM}",
         rating = "MEDIUM",
         abbr   = "AoH",
         letter = "H",

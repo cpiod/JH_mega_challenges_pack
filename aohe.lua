@@ -2,8 +2,7 @@
 original_generator_run = generator.run
 
 function generator.run( self, linfo, gen_run_func, gen_spawn_func )
-
-	local linfo = linfo or world.data.level[ world.data.current ]
+    local linfo = linfo or world.data.level[ world.data.current ]
     local events = nil
     if linfo then
         events = linfo.event
@@ -18,8 +17,8 @@ function generator.run( self, linfo, gen_run_func, gen_spawn_func )
         linfo.event = events
     end
     -- cpiod’s hack, should be backward compatible
-	local event = nil
-	if linfo.event then
+    local event = nil
+    if linfo.event then
         if type(linfo.event) == "string" then -- legacy behavior
             linfo.event = { linfo.event }
         end
@@ -31,14 +30,11 @@ function generator.run( self, linfo, gen_run_func, gen_spawn_func )
             uevent.active = true
         end
     end
-
 end
 
 function cpiod_pick_event(events)
     local val = math.random( #events )
     local pick = events[val]
-    nova.log("nb events avant: "..#events)
-    nova.log("chosed: "..pick)
     -- at most one timed event
     if val >= #events-2 and events[#events] == "event_lockdown" then
         table.remove(events, #events)
@@ -47,18 +43,17 @@ function cpiod_pick_event(events)
     else
         table.remove(events, val)
     end
-    nova.log("nb events apres: "..#events)
     return pick
 end
 
 register_blueprint "challenge_he"
 {
     text = {
-        name   = "Angel of Hell",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nAn eventful adventure.\n\nRating   : {GEASY}",
-        rating = "EASY",
-        abbr   = "AoHe",
-        letter = "H",
+        name   = "Angel of Randomness",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nDue to a solar storm, the Jovian moons suffer from many strange events. Each level has a least two random events. And the deeper you go, the worst it gets...\n\nRating   : {YMEDIUM}",
+        rating = "MEDIUM",
+        abbr   = "AoR",
+        letter = "R",
     },
     challenge = {
         type      = "challenge",

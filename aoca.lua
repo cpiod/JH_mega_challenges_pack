@@ -65,7 +65,7 @@ register_blueprint "challenge_carpentry"
 {
     text = {
         name   = "Angel of Carpentry",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou are not a fighter, only a humble carpenter. Will you defeat the demon invasion with only your trusty nailgun?\nYou start with 30 max HP and your inventory size is limited, but any ammo you pick up is transformed into a multitool!\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou are not a fighter, but John, a humble carpenter. Against the demon invasion, your trusty nailgun. You didn’t ask for any of that. You start with 30 max HP and your inventory size is limited, but any ammo you pick up is transformed into a multitool!\n\nRating   : {YMEDIUM}\nDisabled : {dScavenger}",
         rating = "MEDIUM",
         abbr   = "AoCa",
         letter = "C",

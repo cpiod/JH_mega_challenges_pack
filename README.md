@@ -4,15 +4,14 @@ You want more Jupiter Hell challenges? Get this mod!
 
 It contains :
 
-- Triple Angel: select three challenges!
+- Angel of Trinity: select three challenges!
 - Angel from Ancient Time (with Ranmilia): fight the Harbinger directly with ancient stuff
 - Angel of Hubris, Again (with Feliksas): an updated version of the "Angel of Hubris" challenge
 - Angel of Charon: you are sent to remove all traces of demonic activity. Indeed, you are a CRI soldier!
-- Angel of Darkness: light range is 4 everywhere
-- Angel of Volatility: every floor has a volatile storage, enemies are unstable
-- Angel of Hell: an eventful adventure (at least two events by level)
+- Angel of Darkness: light range is 4 everywhere, no minimap, enemies are tainted
+- Angel of Kaboom: every floor has a volatile storage, enemies are unstable
+- Angel of Randomness: an eventful adventure (at least two events by level)
 - Angel of Bullet Rain: whenever you shoot, all the bullets of the weapon are used at once
-- Angel of Monomania: you love your weapon. You won’t change it for anything else!
 - Angel of Carpentry: what if you were not a soldier but a humble carpenter?
 - Angel of Real Time: in combat, you have only 1s to decide what to do
 - Angel of No Retreat (by Deemzul): you cannot move away from enemies that you see unless moving towards another enemy
