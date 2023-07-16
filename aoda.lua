@@ -10,11 +10,11 @@ register_blueprint "runtime_darkness"
             end
         ]=],
         on_move = [=[
-			function ( self, entity )
+            function ( self, entity )
                 local level = world:get_level()
                 local size = level:get_size()
-                for i=0,size.x do
-                    for j=0,size.y do
+                for i=0,size.x-1 do
+                    for j=0,size.y-1 do
                         if level:is_explored(coord(i,j)) then
                             level:set_explored(coord(i,j), false)
                         end

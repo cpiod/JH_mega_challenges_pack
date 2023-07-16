@@ -12,7 +12,6 @@ function get_code(str)
     return "" -- no callback
 end
 
---bugs: "use medkit" visible in inventory
 --bugs: new york reload no weapon on enemies
 
 register_blueprint "runtime_triple_angel"
@@ -129,7 +128,7 @@ register_blueprint "challenge_triple_angel"
 {
     text = {
         name   = "Angel of Trinity",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nPlay three challenges at once! You choose them at the start of the run.\n\nRating   : {RHARD}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nPlay three challenges at once! You choose them at the start of the run. (Some challenges will only start on Callisto L2)\n\nRating   : {RHARD}",
         rating = "HARD",
         abbr   = "AoT",
         letter = "T",
