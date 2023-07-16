@@ -35,8 +35,8 @@ register_blueprint "challenge_bullet_rain"
 {
     text = {
         name   = "Angel of Bullet Rain",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou just like a nice bullet rain, you know? Because there can’t be 'too much lead'. Each time you shoot, you empty your magazine! Of course, melee and revolver are forbidden. They are no fun!\n\nRating   : {GEASY}",
-        rating = "EASY",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou just like a nice bullet rain, you know? Because there can’t be 'too much lead'. Each time you shoot, you empty your magazine! Of course, melee and revolver are forbidden. They are no fun!\n\nRating   : {YMEDIUM}",
+        rating = "MEDIUM",
         abbr   = "AoBR",
         letter = "B",
     },

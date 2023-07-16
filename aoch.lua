@@ -72,7 +72,7 @@ register_blueprint "challenge_charon"
 {
     text = {
         name   = "Angel of Charon",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou were sent by the Charon Research Institute (CRI) to remove any trace of demonic activity. You have a blaster and you feel no pain. And you are not alone: kill demons to call backups!\nRating   : {YEASY}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nYou were sent by the Charon Research Institute (CRI) to remove any trace of demonic activity. You have a blaster and you feel no pain. And you are not alone: kill demons to call backups!\nRating   : {YMEDIUM}",
         rating = "MEDIUM",
         abbr   = "AoCh",
         letter = "C",

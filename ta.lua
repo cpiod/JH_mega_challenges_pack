@@ -28,7 +28,7 @@ register_blueprint "runtime_triple_angel"
                 if not reenter and world.data.current == 1 then
                     local ch = {"challenge_rocket","challenge_marksmanship","challenge_shotgunnery","challenge_berserk","challenge_reload"}
                     local param = {
-                        title = "Choose your weapon challenge (1/3)",
+                        title = "Choose your weapon challenge",
                         fsize = 15,
                         size  = coord( 40, 0 ),
                     }
@@ -105,10 +105,10 @@ register_blueprint "runtime_triple_angel"
                     local title = ""
                     if self.data.nb_choice==1 then
                         ch = {"challenge_light_travel","challenge_vampirism","challenge_impatience","challenge_doom","challenge_mercy","challenge_exalted"}
-                        title = "Choose your modifier challenge (2/3)"
+                        title = "Choose your modifier challenge"
                     else
                         ch = {"challenge_he","challenge_no_retreat","challenge_real_time","challenge_darkness"}
-                        title = "Choose your modded challenge (3/3)"
+                        title = "Choose your modded challenge"
                     end
                     self.data.nb_choice = self.data.nb_choice + 1
                     local param = {

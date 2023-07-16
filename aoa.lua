@@ -1,9 +1,6 @@
-register_blueprint "runtime_arrogance"
+register_blueprint "runtime_ancient"
 {
     flags = { EF_NOPICKUP },
-    attributes = {
-        aort_prev_time = 0
-    },
 	callbacks = {
         on_enter_level = [[
             function ( self )
@@ -13,11 +10,11 @@ register_blueprint "runtime_arrogance"
     }
 }
 
-register_blueprint "challenge_arrogance"
+register_blueprint "challenge_ancient"
 {
     text = {
-        name   = "Angel of Arrogance",
-        desc   = "No time to lose exploring the moons of Jupiter: defeat the Harbinger, now!\n\nRating   : {RHARD}",
+        name   = "Angel from Ancient Time",
+        desc   = "Long ago, another force fought demons: the ancients. Play as one of them, but don’t lose any time exploring the moons of Jupiter: defeat the Harbinger, now!\n\nRating   : {RHARD}",
         rating = "HARD",
         abbr   = "AoA",
         letter = "A",
@@ -44,7 +41,7 @@ register_blueprint "challenge_arrogance"
                 player:attach( "exo_ancient_gun" )
                 player:attach( "exo_ancient_sword" )
                 player:attach( "ancient_relic_ancient_armband" )
-                player:attach( "runtime_arrogance" )
+                player:attach( "runtime_ancient" )
                 world.data.current = 25
             end
         ]],
