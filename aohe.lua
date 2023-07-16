@@ -34,6 +34,23 @@ function generator.run( self, linfo, gen_run_func, gen_spawn_func )
 
 end
 
+function cpiod_pick_event(events)
+    local val = math.random( #events )
+    local pick = events[val]
+    nova.log("nb events avant: "..#events)
+    nova.log("chosed: "..pick)
+    -- at most one timed event
+    if val >= #events-2 and events[#events] == "event_lockdown" then
+        table.remove(events, #events)
+        table.remove(events, #events)
+        table.remove(events, #events)
+    else
+        table.remove(events, val)
+    end
+    nova.log("nb events apres: "..#events)
+    return pick
+end
+
 register_blueprint "challenge_he"
 {
     text = {
@@ -50,35 +67,23 @@ register_blueprint "challenge_he"
         on_create = [[
             function( self, player )
                 for i,linfo in ipairs( world.data.level ) do
-                    local timed_events = { "event_lockdown",
-                                "event_hunt",
-                                "event_exalted_summons",
-                                "event_cursed" }
-                    local untimed_events = { "event_low_light",
+                    local events = { "event_low_light",
                                 "event_desolation",
                                 "event_volatile_storage",
                                 "event_infestation",
                                 "event_exalted_curse",
                                 "event_vault",
                                 "event_contamination",
-                                "event_windchill" }
-
-                    if linfo.episode == 1 then
-                        local pick1 = table.remove( timed_events, math.random( #timed_events ) )
-                        local pick2 = table.remove( untimed_events, math.random( #untimed_events ) )
-                        linfo.event = { pick1, pick2 }
-                    elseif linfo.episode == 2 then
-                        local pick1 = table.remove( timed_events, math.random( #timed_events ) )
-                        local pick2 = table.remove( untimed_events, math.random( #untimed_events ) )
-                        local pick3 = table.remove( untimed_events, math.random( #untimed_events ) )
-                        linfo.event = { pick1, pick2, pick3 }
-                    elseif linfo.episode >= 3 then
-                        local pick1 = table.remove( timed_events, math.random( #timed_events ) )
-                        local pick2 = table.remove( untimed_events, math.random( #untimed_events ) )
-                        local pick3 = table.remove( untimed_events, math.random( #untimed_events ) )
-                        local pick4 = table.remove( untimed_events, math.random( #untimed_events ) )
-                        linfo.event = { pick1, pick2, pick3, pick4 }
+                                "event_windchill",
+                                "event_hunt",
+                                "event_exalted_summons",
+                                "event_lockdown",
+                            }
+                    local e = {}
+                    for _=1,linfo.episode+1 do
+                        table.insert(e, cpiod_pick_event(events))
                     end
+                    linfo.event = e
                 end
             end
         ]],
