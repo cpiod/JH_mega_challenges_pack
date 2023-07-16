@@ -4,6 +4,8 @@ You want more Jupiter Hell challenges? Get this mod!
 
 It contains :
 
+- Triple Angel: select three challenges!
+- Angel of Arrogance: fight the Harbinger directly
 - Angel of Hubris, Again (with Feliksas): an updated version of the "Angel of Hubris" challenge
 - Angel of Charon: you are sent to remove all traces of demonic activity. Indeed, you are a CRI soldier!
 - Angel of Darkness: light range is 4 everywhere
@@ -14,8 +16,7 @@ It contains :
 - Angel of Carpentry: what if you were not a soldier but a humble carpenter?
 - Angel of Real Time: in combat, you have only 1s to decide what to do
 - Angel of No Retreat (by Deemzul): you cannot move away from enemies that you see unless moving towards another enemy
-- Trial of Tourism (by Sihoiba): visit the moons of Jupiter peacefully
-- Trial of Purgatory: enter the Purgatory, loot its uniques, and meet its boss…
+- Angel of Tourism (by Sihoiba): visit the moons of Jupiter peacefully
 - and many more to come!
 
 # How to install
