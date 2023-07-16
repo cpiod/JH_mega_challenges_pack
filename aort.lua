@@ -33,7 +33,7 @@ register_blueprint "runtime_real_time"
     }
 }
 
-register_blueprint "trait_use_stimpack"
+register_blueprint "runtime_trait_use_stimpack"
 {
     blueprint = "trait",
     text = {
@@ -140,7 +140,7 @@ register_blueprint "challenge_real_time"
         on_create_player = [[
             function( self, player )
                 player:attach( "runtime_real_time" )
-                local tr = player:attach( "trait_use_stimpack" )
+                local tr = player:attach( "runtime_trait_use_stimpack" )
                 player:attach( "stimpack_small" )
                 tr.skill.charge = world:has_item(player, "stimpack_small")
             end
