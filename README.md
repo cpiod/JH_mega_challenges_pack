@@ -15,7 +15,6 @@ It contains :
 - Angel of Carpentry: what if you were not a soldier but a humble carpenter?
 - Angel of Real Time: in combat, you have only 1s to decide what to do
 - Angel of No Retreat (by Deemzul): you cannot move away from enemies that you see unless moving towards another enemy
-- Angel of Tourism (by Sihoiba): visit the moons of Jupiter peacefully
 - and many more to come!
 
 # How to install
