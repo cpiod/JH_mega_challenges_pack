@@ -31,7 +31,7 @@ register_blueprint "trait_call_cri"
                     end
                     local episode = world:get_level().level_info.episode
                     local ids     = { "cri_marine", "cri_bot",}
-                    local count   = 2 * episode - 1
+                    local count   = 2 * episode
                     for _=1,count do
                         local id = ids[ math.random( #ids ) ]
                         local b  = world:create_entity( id )

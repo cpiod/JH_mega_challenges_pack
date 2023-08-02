@@ -25,10 +25,10 @@ register_blueprint "runtime_triple_angel"
         on_enter_level = [=[
             function ( self, entity, reenter )
                 if not reenter and world.data.current == 1 then
-                    local ch = {"challenge_rocket","challenge_marksmanship","challenge_shotgunnery","challenge_berserk","challenge_reload"}
+                    local ch = {"challenge_rocket","challenge_marksmanship","challenge_shotgunnery","challenge_berserk"} --,"challenge_reload"} TODO FIXME
                     local param = {
                         title = "Choose your weapon challenge",
-                        fsize = 15,
+                        fsize = 13,
                         size  = coord( 40, 0 ),
                     }
                     for i,id in ipairs( ch ) do
@@ -104,13 +104,13 @@ register_blueprint "runtime_triple_angel"
                         ch = {"challenge_light_travel","challenge_vampirism","challenge_impatience","challenge_doom","challenge_mercy","challenge_exalted"}
                         title = "Choose your modifier challenge"
                     else
-                        ch = {"challenge_he","challenge_no_retreat","challenge_real_time","challenge_darkness"}
+                        ch = {"challenge_no_retreat","challenge_real_time","challenge_darkness","challenge_volatility"}
                         title = "Choose your modded challenge"
                     end
                     self.data.nb_choice = self.data.nb_choice + 1
                     local param = {
                         title = title,
-                        fsize = 15,
+                        fsize = 10,
                         size  = coord( 40, 0 ),
                     }
                     for i,id in ipairs( ch ) do
@@ -128,7 +128,7 @@ register_blueprint "challenge_triple_angel"
 {
     text = {
         name   = "Angel of Trinity",
-        desc   = "{!MEGA CHALLENGE PACK MOD}\nPlay three challenges at once! You choose them at the start of the run. (Some challenges will only start on Callisto L2)\n\nRating   : {RHARD}",
+        desc   = "{!MEGA CHALLENGE PACK MOD}\nPlay three challenges at once! You choose them at the start of the run. Some challenges will only start on Callisto L2.\n\nRating   : {RHARD}",
         rating = "HARD",
         abbr   = "AoT",
         letter = "T",
