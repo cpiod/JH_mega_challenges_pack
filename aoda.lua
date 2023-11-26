@@ -7,6 +7,13 @@ register_blueprint "runtime_darkness"
                 local l = world:get_level()
                 l.level_info.light_range = 4
                 l.level_info.low_light = true
+                for e in l:entities() do
+                    if world:get_id( e ) == "terminal" then
+                        local reveal = e:child("terminal_recon")
+                        reveal = reveal:child("terminal_reveal")
+                        world:destroy( reveal )
+                    end
+                end
             end
         ]=],
         on_move = [=[
