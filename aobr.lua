@@ -8,11 +8,16 @@ register_blueprint "runtime_bullet_rain"
     text = {
         denied_melee = "That would be cheatin', go play Berserk instead!",
         denied_revolver = "That would be cheatin', go play Marksman instead!",
+        denied_grenade = "That's bullet rain, not grenade rain!",
     },
 	callbacks = {
         can_pickup = [[
             function( self, player, item )
-                if item and item.weapon and (not item.stack) then
+                if item and gtk.is_weapon_group( item, "grenades" ) then
+                    ui:set_hint( self.text.denied_melee, 1001, 0 )
+                    world:play_voice( "vo_refuse" )
+                    return -1
+                elseif item and item.weapon and (not item.stack) then
                     local clip_data = item.clip
                     if clip_data and item.weapon.group == world:hash("pistols") and clip_data.reload_count == 1 and clip_data.count > 1 then
                         ui:set_hint( self.text.denied_revolver, 1001, 0 )
