@@ -85,7 +85,7 @@ register_blueprint "challenge_carpentry"
                 player:attach( "runtime_carpentry" )
                 player.equipment.count = 1
                 player.attributes.inv_capacity = 6
-                player.attributes.health = 30
+                player.attributes.health = 50
             end
         ]],
     },

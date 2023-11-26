@@ -59,6 +59,8 @@ register_blueprint "challenge_volatility"
         on_create_player = [[
             function( self, player )
                 player:attach( "runtime_volatility" )
+                player:attach( "shotgun" )
+                player:attach( "ammo_shells", { stack = { amount = 10 } } )
             end
         ]],
         on_create = [[
