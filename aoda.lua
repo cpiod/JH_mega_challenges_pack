@@ -5,8 +5,10 @@ register_blueprint "runtime_darkness"
         on_enter_level = [=[
             function ( self, entity, reenter )
                 local l = world:get_level()
+                -- low light
                 l.level_info.light_range = 4
                 l.level_info.low_light = true
+                -- disable "reveal" in terminals
                 for e in l:entities() do
                     if world:get_id( e ) == "terminal" then
                         local reveal = e:child("terminal_recon")
@@ -23,6 +25,7 @@ register_blueprint "runtime_darkness"
                 for i=0,size.x-1 do
                     for j=0,size.y-1 do
                         if level:is_explored(coord(i,j)) then
+                            -- make each coordinate unexplored
                             level:set_explored(coord(i,j), false)
                         end
                     end
@@ -48,6 +51,7 @@ register_blueprint "challenge_darkness"
         on_create_entity = [[
             function( self, entity, alive )
                 if alive and entity.data and entity.data.nightmare then
+                    -- enemies are tainted
                     entity:attach( "nightmare_mark" )
                 end
             end

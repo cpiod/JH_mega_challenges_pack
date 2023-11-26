@@ -3,7 +3,7 @@ register_blueprint "runtime_bullet_rain"
 {
     flags = { EF_NOPICKUP },
     attributes = {
-        shots = 1000,
+        shots = 10,
     },
     text = {
         denied_melee = "That would be cheatin', go play Berserk instead!",
